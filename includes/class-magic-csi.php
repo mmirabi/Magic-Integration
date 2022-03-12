@@ -56,8 +56,9 @@ class Magic_CSI {
 		require_once MAGIC_CSI_ABSPATH . 'includes/class-magic-csi-public.php';
 		require_once MAGIC_CSI_ABSPATH . 'includes/woocommerce/class-magic-csi-woocommerce.php';
 
-		// Load lumise class.
-		require_once MAGIC_CSI_ABSPATH . 'includes/lumise/class-magic-lumise.php';
+		// Load magic class.
+		require_once MAGIC_CSI_ABSPATH . 'includes/magic/class-magic-magic.php';
+		require_once MAGIC_CSI_ABSPATH . 'includes/magic/calss-magic-magic-ajax.php';
 
 		/*// API classes.
 		require_once MAGIC_CSI_ABSPATH . 'includes/class-magic-csi-rest-api.php';

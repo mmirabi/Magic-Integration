@@ -1,9 +1,9 @@
-<? php
+<?php
 /**
- * Plugin Name: MagicRugs Pro (Size)
+ * Plugin Name: Magic
  * Plugin URI: https://magicrugs.com
  * Description: A Custom integration dedicate plugin
- * Version: 1.2.0
+ * Version: 1.3.0
  * Author: Mehdi Mirabi
  * Author URI: https://mehdimirabi.com
  * Text Domain: Mehdi Mirabi

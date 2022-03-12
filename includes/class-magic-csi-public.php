@@ -4,6 +4,7 @@ namespace Magic_CSI;
 
 /**
  * Class _public
+ * @package Magic_CSI
  */
 class _public {
     /**
