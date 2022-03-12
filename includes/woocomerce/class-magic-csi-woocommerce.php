@@ -22,9 +22,9 @@ class WooCommerce {
 		add_action( 'wp_enqueue_scripts', [ $this, 'loadScripts' ] );
 		add_action( 'woocommerce_before_add_to_cart_button', [ $this, 'addFieldsThatWeeNeed' ], 10 );
 		// Logic to Save products custom fields values into the cart item data
-		add_action( 'woocommerce_add_cart_item_data', [ $this, 'saveCustomDataOnItem' ], 10, 2 );
-		add_action( 'woocommerce_before_calculate_totals', [ $this, 'addCustomPriceToProduct' ], 10 );
-		add_filter( 'woocommerce_cart_item_price', [ $this, 'updateCustomPriceMiniCart' ], 10, 3 );
+		add_action( 'woocommerce_add_cart_item_data', [ $this, 'saveCustomDataOnItem' ], 99, 2 );
+		add_action( 'woocommerce_before_calculate_totals', [ $this, 'addCustomPriceToProduct' ], 99 );
+		add_filter( 'woocommerce_cart_item_price', [ $this, 'updateCustomPriceMiniCart' ], 99, 3 );
 		add_filter( 'woocommerce_get_item_data', [ $this, 'showCustomDataOnCart' ], 1, 2 );
 		add_action( 'woocommerce_checkout_create_order_line_item', [ $this, 'addDataItemsToOrder' ], 10, 4 );
 	}
@@ -45,7 +45,7 @@ class WooCommerce {
 		$customData = $values['custom_data'] ?? '';
 
 		if ( $customData && ! empty( $customData['magic_shape'] ) ) {
-			$suffix = ' Inch';
+			$suffix = ' Foot';
 			$item->update_meta_data( 'Width', $customData['magic_width'] . $suffix );
 			$item->update_meta_data( 'Height', $customData['magic_height'] . $suffix );
 			$item->update_meta_data( 'Style', $customData['magic_shape'] );
@@ -67,7 +67,7 @@ class WooCommerce {
 
 		if ( $customData && ! empty( $customData['magic_shape'] ) ) {
 
-			$suffix     = ' Inch';
+			$suffix     = ' Foot';
 			$itemWidth  = $customData['magic_width'] . $suffix;
 			$itemheight = $customData['magic_height'] . $suffix;
 			$itemShape  = $customData['magic_shape'];
@@ -208,12 +208,11 @@ class WooCommerce {
 		global $product;
 		$productID = $product->get_id();
 
-		if ( get_field( 'custom_integration', $productID ) ) {
+		if ( get_field( 'custom_integration', $productID ) && get_field( 'custom_product_id', $productID ) ) {
 
 			include "variation-form.php";
 		}
 	}
-
 }
 
 new WooCommerce();
