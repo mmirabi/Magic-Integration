@@ -22,6 +22,36 @@
             "ui_off_text": "Disable"
         },
         {
+            "key": "field_6229064469a43",
+            "label": "Select custom product",
+            "name": "custom_product_id",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_61e432f590b4b",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": [],
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 1,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
             "key": "field_620698fd0a0ec",
             "label": "Runner",
             "name": "",
@@ -668,5 +698,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1644599755
+    "modified": 1646903412
 }

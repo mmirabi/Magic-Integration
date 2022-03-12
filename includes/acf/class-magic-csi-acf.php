@@ -20,6 +20,8 @@ class ACF {
 
 			return $folders;
 		} );
+
+		add_filter( 'acf/load_field/name=custom_product_id', [ $this, 'setFieldValues' ] );
 	}
 
 	/**
@@ -29,7 +31,7 @@ class ACF {
 	 *
 	 * @return mixed
 	 */
-	function loadAcfJson( $paths ) {
+	public function loadAcfJson( $paths ) {
 
 		// append path
 		$paths[] = MAGIC_CSI_ABSPATH . 'includes/acf/local-json';
@@ -37,6 +39,22 @@ class ACF {
 		return $paths;
 	}
 
+	public function setFieldValues( $field ) {
+
+
+		global $wpdb;
+
+		$field['choices'] = [];
+		$choices          = $wpdb->get_results( "SELECT `id`, `name` FROM `magic_products`", 'ARRAY_A' );
+
+		if ( ! empty( $choices ) ) {
+			foreach ( $choices as $choice ) {
+				$field['choices'][ $choice['id'] ] = $choice['name'];
+			}
+		}
+
+		return $field;
+	}
 }
 
 new ACF();
