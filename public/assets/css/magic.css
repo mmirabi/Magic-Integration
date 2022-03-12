@@ -1,0 +1,45 @@
+#nav-bottom-left {
+    display: none !important;
+}
+
+.magic-cart-field.how-calculate {
+    display: none;
+}
+
+#magic-change-product {
+    display: none !important;
+}
+
+div#MagicDesign div#magic-left > div.magic-left-nav-wrp li[data-tab="cliparts"], div#MagicDesign div#magic-left > div.magic-left-nav-wrp li[data-tab="bug"] {
+    display: none !important;
+}
+
+div#magic-product #magic-cart-wrp input {
+    width: 50%;
+}
+
+.magic-cart-field-quantity input {
+    width: 100px !important;
+}
+
+.magic_form_group input[type="number"]::-webkit-outer-spin-button,
+.magic_form_group input[type="number"]::-webkit-inner-spin-button {
+    display: block;
+}
+
+.magic-cart-field-quantity input::-webkit-outer-spin-button,
+.magic-cart-field-quantity input::-webkit-inner-spin-button {
+    display: none !important;
+}
+
+.magic_form_group input[type="number"]:focus {
+    outline: 0;
+}
+
+canvas.upper-canvas {
+    cursor: default !important;
+}
+
+div#magic-product #magic-cart-wrp input{
+    padding: 5px;
+}
