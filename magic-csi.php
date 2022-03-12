@@ -16,10 +16,10 @@ if ( ! defined( 'MAGIC_CSI_PLUGIN_FILE' ) ) {
 }
 
 // Get plugin Data.
-// $plugin_data = get_plugin_data( MAGIC_CSI_PLUGIN_FILE );
+ $plugin_data = get_plugin_data( MAGIC_CSI_PLUGIN_FILE );
 
 // Set another useful Plugin defines.
-define( 'MAGIC_CSI_PLUGIN_VERSION', $plugin_data['Version'] );
+ define( 'MAGIC_CSI_PLUGIN_VERSION', $plugin_data['Version'] );
 
 /**
  * Load main class.

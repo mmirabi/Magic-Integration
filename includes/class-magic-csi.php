@@ -58,7 +58,7 @@ class Magic_CSI {
 
 		// Load magic class.
 		require_once MAGIC_CSI_ABSPATH . 'includes/magic/class-magic-magic.php';
-		require_once MAGIC_CSI_ABSPATH . 'includes/magic/calss-magic-magic-ajax.php';
+		require_once MAGIC_CSI_ABSPATH . 'includes/magic/class-magic-magic-ajax.php';
 
 		/*// API classes.
 		require_once MAGIC_CSI_ABSPATH . 'includes/class-magic-csi-rest-api.php';
