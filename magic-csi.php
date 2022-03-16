@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Magic Size
+ * Plugin Name: Magic
  * Plugin URI: https://magicrugs.com
  * Description: A Custom integration dedicate plugin
  * Version: 1.3.0
