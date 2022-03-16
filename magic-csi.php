@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Magic
+ * Plugin Name: Magic Size
  * Plugin URI: https://magicrugs.com
  * Description: A Custom integration dedicate plugin
  * Version: 1.3.0
@@ -10,23 +10,31 @@
  * Domain Path: /languages
  */
 
-// Define MAGIC_CSI_PLUGIN_FILE.
-if ( ! defined( 'MAGIC_CSI_PLUGIN_FILE' ) ) {
-	define( 'MAGIC_CSI_PLUGIN_FILE', __FILE__ );
+// Define LISTIRS_CSI_PLUGIN_FILE.
+if ( ! defined( 'LISTIRS_CSI_PLUGIN_FILE' ) ) {
+	define( 'LISTIRS_CSI_PLUGIN_FILE', __FILE__ );
 }
 
+/**
+ * Check get_plugin_data function exist
+ */
+if ( ! function_exists( 'get_plugin_data' ) ) {
+	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+}
+
+
 // Get plugin Data.
- $plugin_data = get_plugin_data( MAGIC_CSI_PLUGIN_FILE );
+$plugin_data = get_plugin_data( LISTIRS_CSI_PLUGIN_FILE );
 
 // Set another useful Plugin defines.
- define( 'MAGIC_CSI_PLUGIN_VERSION', $plugin_data['Version'] );
+define( 'LISTIRS_CSI_PLUGIN_VERSION', $plugin_data['Version'] );
 
 /**
  * Load main class.
  */
-require 'includes/class-magic-csi.php';
+require 'includes/class-listirs-csi.php';
 
 /**
  * Main instance of plugin.
  */
-new Magic_CSI();
+new Listirs_CSI();
