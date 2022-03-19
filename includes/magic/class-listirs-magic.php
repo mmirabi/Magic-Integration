@@ -14,6 +14,8 @@ class Magic {
 	public function __construct() {
 		add_action( 'magic_editor-header', [ $this, 'loadOnHeader' ] );
 		add_action( 'magic_editor-footer', [ $this, 'loadOnFooter' ] );
+		add_filter( 'magic_product_extra_price', [ $this, 'changeProductPrice' ], 99, 2 );
+		add_filter( 'magic_product_base_price', [ $this, 'setBaseProductToZero' ], 99 );
 	}
 
 
@@ -35,6 +37,28 @@ class Magic {
 		include 'footer.php';
 	}
 
+	/**
+	 * Set and change product price on checkout Magic
+	 *
+	 * @param $array | empty
+	 * @param $data
+	 *
+	 * @return mixed
+	 */
+	public function changeProductPrice( $array, $data ) {
+
+		return [ $data->price_total ] ?? [];
+	}
+
+	/**
+	 * Set any default base price to Zero
+	 *
+	 * @return int
+	 */
+	public function setBaseProductToZero( $price ) {
+
+		return 0;
+	}
 }
 
 new Magic();

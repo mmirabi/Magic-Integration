@@ -1,70 +1,64 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // Exit if accessed directly
+namespace Listirs_CSI;
 
-class Listirs_CSI {
+/**
+ * Class Option
+ * @package Listirs_CSI
+ */
+class Magic {
+
 	/**
-	 * Listirs_CSI constructor.
+	 * Option constructor.
 	 */
 	public function __construct() {
-		$this->set_constants();
-		$this->includes();
-		$this->init_hooks();
+		add_action( 'magic_editor-header', [ $this, 'loadOnHeader' ] );
+		add_action( 'magic_editor-footer', [ $this, 'loadOnFooter' ] );
+		add_filter( 'magic_product_extra_price', [ $this, 'changeProductPrice' ], 99, 2 );
+		add_filter( 'magic_product_base_price', [ $this, 'setBaseProductToZero' ], 99 );
+	}
+
+
+	/**
+	 * Load header contents
+	 *
+	 * @return void
+	 */
+	public function loadOnHeader() {
+		include 'header.php';
 	}
 
 	/**
-	 * Define Constants.
+	 * Load footer contents
+	 *
+	 * @return void
 	 */
-	private function set_constants() {
-		define( 'LISTIRS_CSI_ABSPATH', plugin_dir_path( LISTIRS_CSI_PLUGIN_FILE ) );
-		define( 'LISTIRS_CSI_URL', plugin_dir_url( dirname( __FILE__ ) ) );
+	public function loadOnFooter() {
+		include 'footer.php';
 	}
 
 	/**
-	 * Initial plugin setup.
+	 * Set and change product price on checkout Magic
+	 *
+	 * @param $array | empty
+	 * @param $data
+	 *
+	 * @return mixed
 	 */
-	private function init_hooks() {
+	public function changeProductPrice( $array, $data ) {
 
-		// Load text domain
-		add_action( 'init', array( $this, 'load_textdomain' ) );
+		return [ $data->price_total ] ?? [];
 	}
 
 	/**
-	 * Load plugin textdomain.
+	 * Set any default base price to Zero
+	 *
+	 * @return int
 	 */
-	public function load_textdomain() {
-		load_plugin_textdomain( 'listirs-csi', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-	}
+	public function setBaseProductToZero( $price ) {
 
-	/**
-	 * Includes classes and functions.
-	 */
-	public function includes() {
-//		require_once LISTIRS_CSI_ABSPATH . 'includes/class-listirs-csi-install.php';
-
-		/*		if ( is_admin() ) {
-					require_once LISTIRS_CSI_ABSPATH . 'includes/admin/class-listirs-csi-admin.php';
-					require_once LISTIRS_CSI_ABSPATH . 'includes/admin/class-listirs-csi-settings.php';
-				} else {
-					require_once LISTIRS_CSI_ABSPATH . 'includes/class-listirs-csi-public.php';
-				}*/
-
-		// Utility classes.
-		require_once LISTIRS_CSI_ABSPATH . 'includes/acf/class-listirs-csi-acf.php';
-		require_once LISTIRS_CSI_ABSPATH . 'includes/class-listirs-csi-public.php';
-		require_once LISTIRS_CSI_ABSPATH . 'includes/woocommerce/class-listirs-csi-woocommerce.php';
-
-		// Load magic class.
-		require_once LISTIRS_CSI_ABSPATH . 'includes/magic/class-listirs-magic.php';
-		require_once LISTIRS_CSI_ABSPATH . 'includes/magic/class-listirs-magic-ajax.php';
-
-		/*// API classes.
-		require_once LISTIRS_CSI_ABSPATH . 'includes/class-listirs-csi-rest-api.php';
-		require_once LISTIRS_CSI_ABSPATH . 'includes/api/v1/class-listirs-csi-api-controller.php';*/
-
-		// Template functions.
-		require_once LISTIRS_CSI_ABSPATH . 'includes/template-functions.php';
+		return 0;
 	}
 }
+
+new Magic();
