@@ -1,10 +1,10 @@
 <?php
 
-namespace Magic_CSI;
+namespace Listirs_CSI;
 
 /**
  * Class Admin
- * @package Magic_CSI
+ * @package Listirs_CSI
  */
 class ACF {
 	/**
@@ -16,7 +16,7 @@ class ACF {
 
 
 		add_filter( 'aljm_save_json', function ( $folders ) {
-			$folders['Magic'] = MAGIC_CSI_ABSPATH . 'includes/acf/local-json';
+			$folders['Listirs'] = LISTIRS_CSI_ABSPATH . 'includes/acf/local-json';
 
 			return $folders;
 		} );
@@ -34,7 +34,7 @@ class ACF {
 	public function loadAcfJson( $paths ) {
 
 		// append path
-		$paths[] = MAGIC_CSI_ABSPATH . 'includes/acf/local-json';
+		$paths[] = LISTIRS_CSI_ABSPATH . 'includes/acf/local-json';
 
 		return $paths;
 	}

@@ -1,10 +1,10 @@
 <?php
 
-namespace Magic_CSI;
+namespace Listirs_CSI;
 
 /**
  * Class Option
- * @package Magic_CSI
+ * @package Listirs_CSI
  */
 class Magic {
 

@@ -1,7 +1,7 @@
 jQuery(document).ready(function ($) {
 
     let originalUrl = $('#magic-customize-button').attr('href');
-    let newUrl = $('input[name="magic_product_base"]').val();
+    let newUrl = $('input[name="listirs_product_base"]').val();
 
     // Detect change size of the product option
     $(document).on('change', 'select[name="attribute_pa_size"]', function () {
@@ -62,7 +62,7 @@ jQuery(document).ready(function ($) {
         $('.single_add_to_cart_button').removeClass('disabled wc-variation-selection-needed');
         $('#magic-customize-button').removeClass('disabled');
 
-        $('input[name="magic_final_price"]').val(selectedPrice);
+        $('input[name="listirs_final_price"]').val(selectedPrice);
 
         newUrl = updateUrlParameter(newUrl, 'shape', $this.val());
         $('#magic-customize-button').attr('href', newUrl);
@@ -96,8 +96,8 @@ jQuery(document).ready(function ($) {
         }));
         $estimateTime.text(estimateTime.toString())
 
-        $('input[name="magic_final_price"]').val(calculatedPrice.toString());
-        $('input[name="magic_final_time"]').val(estimateTime.toString());
+        $('input[name="listirs_final_price"]').val(calculatedPrice.toString());
+        $('input[name="listirs_final_time"]').val(estimateTime.toString());
 
         newUrl = updateUrlParameter(newUrl, $(this).attr('name'), $this.val());
         newUrl = updateUrlParameter(newUrl, 'price', calculatedPrice.toString());

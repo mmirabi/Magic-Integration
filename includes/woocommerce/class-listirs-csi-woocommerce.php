@@ -1,10 +1,10 @@
 <?php
 
-namespace Magic_CSI;
+namespace Listirs_CSI;
 
 /**
  * Class Option
- * @package Magic_CSI
+ * @package Listirs_CSI
  */
 class WooCommerce {
 
@@ -44,11 +44,11 @@ class WooCommerce {
 
 		$customData = $values['custom_data'] ?? '';
 
-		if ( $customData && ! empty( $customData['magic_shape'] ) ) {
+		if ( $customData && ! empty( $customData['listirs_shape'] ) ) {
 			$suffix = ' Foot';
-			$item->update_meta_data( 'Width', $customData['magic_width'] . $suffix );
-			$item->update_meta_data( 'Height', $customData['magic_height'] . $suffix );
-			$item->update_meta_data( 'Style', $customData['magic_shape'] );
+			$item->update_meta_data( 'Width', $customData['listirs_width'] . $suffix );
+			$item->update_meta_data( 'Height', $customData['listirs_height'] . $suffix );
+			$item->update_meta_data( 'Style', $customData['listirs_shape'] );
 		}
 	}
 
@@ -65,12 +65,12 @@ class WooCommerce {
 
 		$customData = $cart_item['custom_data'] ?? '';
 
-		if ( $customData && ! empty( $customData['magic_shape'] ) ) {
+		if ( $customData && ! empty( $customData['listirs_shape'] ) ) {
 
 			$suffix     = ' Foot';
-			$itemWidth  = $customData['magic_width'] . $suffix;
-			$itemheight = $customData['magic_height'] . $suffix;
-			$itemShape  = $customData['magic_shape'];
+			$itemWidth  = $customData['listirs_width'] . $suffix;
+			$itemheight = $customData['listirs_height'] . $suffix;
+			$itemShape  = $customData['listirs_shape'];
 
 			return array_merge( $item_data, [ [ 'key' => 'Width', 'value' => $itemWidth ], [ 'key' => 'Height', 'value' => $itemheight ], [ 'key' => 'Style', 'value' => $itemShape ] ] );
 		}
@@ -87,18 +87,18 @@ class WooCommerce {
 	public function saveCustomDataOnItem( $cart_item_data, $product_id ) {
 		$data = [];
 
-		if ( isset( $_REQUEST['magic_final_price'] ) && isset( $_REQUEST['attribute_pa_size'] ) && $_REQUEST['attribute_pa_size'] == 'custom-size' ) {
-			$cart_item_data['custom_data']['magic_final_price'] = $_REQUEST['magic_final_price'];
-			$data['magic_final_price']                          = $_REQUEST['magic_final_price'];
+		if ( isset( $_REQUEST['listirs_final_price'] ) && isset( $_REQUEST['attribute_pa_size'] ) && $_REQUEST['attribute_pa_size'] == 'custom-size' ) {
+			$cart_item_data['custom_data']['listirs_final_price'] = $_REQUEST['listirs_final_price'];
+			$data['listirs_final_price']                          = $_REQUEST['listirs_final_price'];
 
 			$pa_width                                       = $_REQUEST['shape_width'] ?? 'Not set';
-			$cart_item_data['custom_data']['magic_width'] = $pa_width;
+			$cart_item_data['custom_data']['listirs_width'] = $pa_width;
 
 			$pa_height                                       = $_REQUEST['shape_height'] ?? 'Not set';
-			$cart_item_data['custom_data']['magic_height'] = $pa_height;
+			$cart_item_data['custom_data']['listirs_height'] = $pa_height;
 
 			$selectedStyle                                  = ucfirst( $_REQUEST['selected_shape'] ) ?? 'Not set';
-			$cart_item_data['custom_data']['magic_shape'] = $selectedStyle;
+			$cart_item_data['custom_data']['listirs_shape'] = $selectedStyle;
 		}
 
 		// below statement make sure every add to cart action as unique line item
@@ -121,9 +121,9 @@ class WooCommerce {
 	public function updateCustomPriceMiniCart( $price_html, $cart_item, $cart_item_key ) {
 		$customData = $cart_item['custom_data'] ?? '';
 
-		if ( $customData && ! empty( $customData['magic_shape'] ) ) {
+		if ( $customData && ! empty( $customData['listirs_shape'] ) ) {
 
-			$args = [ 'price' => $customData['magic_final_price'] ];
+			$args = [ 'price' => $customData['listirs_final_price'] ];
 
 			if ( WC()->cart->display_prices_including_tax() ) {
 				$product_price = wc_get_price_including_tax( $cart_item['data'], $args );
@@ -155,8 +155,8 @@ class WooCommerce {
 //			$original_price = $item_values['data']->price; // Product original price
 
 			## Get your custom fields values
-			if ( isset( $item_values['custom_data']['magic_final_price'] ) ) {
-				$final_price = $item_values['custom_data']['magic_final_price'];
+			if ( isset( $item_values['custom_data']['listirs_final_price'] ) ) {
+				$final_price = $item_values['custom_data']['listirs_final_price'];
 
 				## Set the new item price in cart
 				$item_values['data']->set_price( $final_price );
@@ -186,11 +186,11 @@ class WooCommerce {
 		global $post;
 
 		if ( isset( $post->post_type ) && $post->post_type === 'product' && get_field( 'custom_integration', $post->ID ) ) {
-			wp_enqueue_script( 'Magic-CSI', MAGIC_CSI_URL . 'public/assets/js/scripts.js', [ 'jquery' ], MAGIC_CSI_PLUGIN_VERSION );
-			wp_enqueue_style( 'Magic-CSI', MAGIC_CSI_URL . 'public/assets/css/style.css', [], MAGIC_CSI_PLUGIN_VERSION );
+			wp_enqueue_script( 'Listirs-CSI', LISTIRS_CSI_URL . 'public/assets/js/scripts.js', [ 'jquery' ], LISTIRS_CSI_PLUGIN_VERSION );
+			wp_enqueue_style( 'Listirs-CSI', LISTIRS_CSI_URL . 'public/assets/css/style.css', [], LISTIRS_CSI_PLUGIN_VERSION );
 
 			// Add localization
-//				wp_localize_script( 'Magic-CSI', 'magic-variables',
+//				wp_localize_script( 'Listirs-CSI', 'listirs-variables',
 //					[
 //						'product_' => 'value 1',
 //						'data_var_2' => 'value 2',

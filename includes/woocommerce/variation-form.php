@@ -21,8 +21,8 @@
     <input type="hidden" name="oval_max_size" value="<?php the_field( 'oval_max_size' ); ?>"/>
     <input type="hidden" name="runner_min_size" value="<?php the_field( 'runner_min_size' ); ?>"/>
     <input type="hidden" name="runner_max_size" value="<?php the_field( 'runner_max_size' ); ?>"/>
-    <input type="hidden" name="magic_final_price" value=""/>
-    <input type="hidden" name="magic_final_time" value=""/>
+    <input type="hidden" name="listirs_final_price" value=""/>
+    <input type="hidden" name="listirs_final_time" value=""/>
     <label class="radio-btn-label">Select style</label>
 	<?php
 	global $wpdb;
@@ -35,7 +35,7 @@
 		if ( $magicProduct ):
 			$link_design = str_replace( '?&', '?', $tool . '&product_base=' . $magicProduct . '&product_cms=' . $pid . '&shape_width=0&shape_height=0&shape=' );
 			?>
-            <input type="hidden" name="magic_product_base" value="<?php echo $link_design; ?>"/>
+            <input type="hidden" name="listirs_product_base" value="<?php echo $link_design; ?>"/>
 		<?php endif;
 	} ?>
     <br>
