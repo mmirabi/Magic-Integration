@@ -16,6 +16,7 @@ class Magic {
 		add_action( 'magic_editor-footer', [ $this, 'loadOnFooter' ] );
 		add_filter( 'magic_product_extra_price', [ $this, 'changeProductPrice' ], 99, 2 );
 		add_filter( 'magic_product_base_price', [ $this, 'setBaseProductToZero' ], 99 );
+		add_action( 'woocommerce_process_product_meta', [ $this, 'setProductIdOnSave' ], 99 );
 	}
 
 
@@ -58,6 +59,25 @@ class Magic {
 	public function setBaseProductToZero( $price ) {
 
 		return 0;
+	}
+
+	/**
+	 * Set product ID to Magic products
+	 *
+	 * @param $productID
+	 *
+	 * @return void
+	 */
+	public function setProductIdOnSave( $productID ) {
+		if ( get_field( 'custom_integration', $productID ) ) {
+
+			$getCustomProductId = get_field( 'custom_product_id', $productID );
+			if ( $getCustomProductId ) {
+
+				global $wpdb;
+				$wpdb->query( "UPDATE `magic_products` SET `product` = $productID WHERE `id` = $getCustomProductId" );
+			}
+		}
 	}
 }
 
