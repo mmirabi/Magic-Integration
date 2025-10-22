@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Magic
+ * Plugin Name: Magic Integration
  * Plugin URI: https://magicrugs.com
- * Description: A Custom integration dedicate plugin
- * Version: 1.3.0
+ * Description: Create custom sizes and shapes for each product. To use this plugin, you need to install the Advanced Custom Fields (ACF®) plugin.
+ * Version: 1.4.0
  * Author: Mehdi Mirabi
  * Author URI: https://mehdimirabi.com
  * Text Domain: Mehdi Mirabi
